@@ -17,6 +17,11 @@
 включая взлеты, посадки, выход на круговые и эллиптические орбиты вокруг безатмосферных небесных тел.
 <a href="http://epizodsspace.no-ip.org/bibl/tm/1985/9/put.html">Более подробное описание</a>
 
+## Вычисление числа 'e'
+Программа e.pmk вычисляет число **e**. 
+Инструкция: после импорта необходимо нажать **В/О**, **С/П**. После долгих вычислений в регистрах *X* и *Р0* 
+будет находиться начало числа, в регистрах **Р1**-**Рe** -- последующие, группами 6 цифр в каждом регистре.
+
 ----
 <a href="https://play.google.com/store/apps/details?id=com.cax.pmk.ext&hl=ru" alt="Download from Google Play">
   <img src="http://www.android.com/images/brand/android_app_on_play_large.png">
