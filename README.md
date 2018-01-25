@@ -28,7 +28,7 @@
 
 ## Решение квадратного уравнения
 Программа square-equation.pmk решает квадратные уравнения.
-[Инструкция](http://htmlpreview.github.io/?https://github.com/xvadim/pmk-android/blob/master/square-equation.html)
+[Инструкция](http://htmlpreview.github.io/?https://github.com/xvadim/pmk61-programms/blob/master/square-equation.html)
 
 ## Пещера (cave)
 Игрок пытается в пещере со множеством дверей добраться до сокровища и не попасться при этом чудовищу.
