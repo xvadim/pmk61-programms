@@ -2,6 +2,131 @@
     <head>
         <meta charset="utf-8" />
         <title>Лунолет-1</title>
+         <style>
+        
+body {
+    background: #BBBBBB;
+    color: black;
+}
+
+/* common button */
+#but {
+    background-color:#CCCCCC;
+    color:black;
+
+    text-transform:uppercase;
+
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+
+    padding: 3px 12px 1px 12px;
+
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+
+/* F button */
+#but_f {
+    background-color:#F5E345;
+    color:black;
+
+    text-transform:uppercase;
+
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+
+    padding: 1px 12px 1px 12px;
+
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+
+/* K button */
+#but_k {
+    background-color:#71E3FF;
+    color:white;
+
+    text-transform:uppercase;
+
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+
+    padding: 1px 12px 1px 12px;
+
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+
+/* CX button */
+#but_cx {
+    background-color:#F00505;
+    color:white;
+
+    text-transform:uppercase;
+
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+
+    padding: 1px 8px 1px 8px;
+
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+
+/* black button */
+#but_b {
+    background-color:black;
+    color:white;
+
+    text-transform:uppercase;
+
+    font-size:1.1em;
+    font-weight:bold;
+    font-family:monospace;
+
+    padding:4px 6px 1px 6px;
+    
+    border:thin solid white;
+    border-radius:3px;
+    width:12px;
+}
+
+#code {
+    background-color:#103810;
+    color:#77FF77;
+    
+    font-family: monospace;
+    font-size:1.3em;
+    font-weight:bold;
+    padding: 3px 2px 5px 2px;
+}
+
+#reg {
+    color:white;
+}
+
+#op_f {
+    color:yellow;
+}
+
+#op_k {
+    color:#167ed7;
+}
+
+    </style>
+
     </head>
     <body>
         <h2 align="center">Лунолет 1</h2>
@@ -59,7 +184,13 @@
         </p>
 
         <h4 align="center">Аварийные ситуации</h4>
-        <p>Если после передачи команды на двигатель на экране загорается аварийный сигнал, это означает одно из двух: либо кончилось топливо, либо ускорения превысили допустимое значение. В первом случае по завершении маневра двигатели выключатся и корабль упадет на поверхность планеты, во втором — отключатся на некоторое время (пропорциональное перегрузкам), и корабль на протяжении этого времени тоже будет свободно падать: считается, что экипаж еще не обрел способности управлять кораблем. Если был задан расход, превышающий наличный запас топлива, двигатель выключится до завершения намеченного маневра, в момент полного исчерпания топлива, причем тяга (она пропорциональна отношению расход/время) будет равна заданной.
+        <p>Если после передачи команды на двигатель на экране загорается аварийный сигнал, это означает одно из двух: 
+            либо кончилось топливо, либо ускорения превысили допустимое значение. В первом случае по завершении 
+            маневра двигатели выключатся и корабль упадет на поверхность планеты, во втором — отключатся 
+            на некоторое время (пропорциональное перегрузкам), и корабль на протяжении этого времени тоже будет 
+            свободно падать: считается, что экипаж еще не обрел способности управлять кораблем. Если был задан расход, 
+            превышающий наличный запас топлива, двигатель выключится до завершения намеченного маневра, 
+            в момент полного исчерпания топлива, причем тяга (она пропорциональна отношению расход/время) будет равна заданной.
         </p>
 
         <p>При аварийном сигнале нужно нажать С/П. Обращаться к памяти или производить на ПМК какие-то вычисления в
@@ -74,6 +205,33 @@
             что и в обычной ситуации.
         </p>
             
+        <h3 align="center">Пример игры</h3>
+        <p>
+            Сразу после импорта содержимое регистров соответствует данным из
+            <a href="http://epizodsspace.no-ip.org/bibl/tm/1985/6/istinn-prav.html">Оригинального рассказа</a>. Ниже 
+            представлены несколько первых команд и их пояснения.
+        </p>
+
+        <p><span id=but_b>В/О</span>&nbsp;<span id=but_b>С/П</span> - начало игры</p>
+        <p><span id=code>0</span> - находимся на поверхности Луны </p>
+        <p><span id=but>6</span><span id=but>5</span><span id=but_b>ПП</span>
+            <span id=but>3</span><span id=but_b>С/П</span> - первый маневр: расход топлива 65 кг., время маневра 3
+            секунды</p>
+        <p><span id=code>Г</span> - перегрузка!</p>
+        <p><span id=but_b>С/П</span> - полет продолжается</p>
+        <p><span id=code>169.1</span> - высота 169 м.</p>
+        <p><span id=but>XY</span>&nbsp;<span id=code>84.1</span> - скорость 84.1 м/c</p>
+        <p><span id=but>0</span><span id=but_b>ПП</span><span id=but>2</span><span id=but_b>С/П</span> - продолжаем
+            полет</p>
+        <p><span id=code>334.1</span> - высота 334 м.</p>
+        <p><span id=but>XY</span>&nbsp;<span id=code>80.8</span> - скорость 80.1 м/c</p>
+        <p><span id=but>6</span><span id=but>5</span><span id=but_b>ПП</span>
+            <span id=but>3</span><span id=but_b>С/П</span> - новый маневр</p>
+        <p><span id=code>Г</span> - и снова перегрузка!</p>
+        <p><span id=but_b>С/П</span> - полет продолжается</p>
+        <p><span id=code>915.8</span> - высота 915.8 м.</p>
+        <p><span id=but>XY</span>&nbsp;<span id=code>166.0</span> - скорость 166 м/c</p>
+        <p>Мягкой посадки!</p>
 
         <p><font size=-1>
             <a href="http://epizodsspace.no-ip.org/bibl/tm/1985/6/istinn-prav.html">Оригинал</a>
