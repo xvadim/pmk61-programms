@@ -1,0 +1,208 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Кооперативное кафе</title>
+         <style>
+        
+body {
+    background: #BBBBBB;
+    color: black;
+}
+ul li {
+    margin: 0 20px 20px 0
+}
+/* common button */
+#button {
+    background-color:#CCCCCC;
+    color:black;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 12px 1px 12px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+/* F button */
+#button_f {
+    background-color:#F5E345;
+    color:black;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 12px 1px 12px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+/* K button */
+#button_k {
+    background-color:#71E3FF;
+    color:white;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 12px 1px 12px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+/* CX button */
+#button_cx {
+    background-color:#F00505;
+    color:white;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 8px 1px 8px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+/* black button */
+#black_button {
+    background-color:black;
+    color:white;
+    text-transform:uppercase;
+    font-size:1.1em;
+    font-weight:bold;
+    font-family:monospace;
+    padding:2px 6px 1px 6px;
+    
+    border:thin solid white;
+    border-radius:3px;
+    width:12px;
+}
+#display {
+    background-color:#103810;
+    color:#77FF77;
+    
+    font-family: monospace;
+    font-size:1.3em;
+    font-weight:bold;
+    padding: 1px 2px 1px 2px;
+}
+#register {
+    color:white;
+    font-weight:bold;
+}
+#f_operation {
+    color:yellow;
+}
+#k_operation {
+    color:#167ed7;
+}
+    </style>
+
+    </head>
+    <body>
+        <h1 align="center">Кооперативное кафе</h1>
+
+        <p><i>
+            Вы стали владельцем небольшого кооперативного кафе или столовой. Разумно распределяя имеющиеся деньги на продукты, обслуживание посетителей и рекламу вашего заведения добейтесь его положительной репутации, процветания и расширения.
+        </i></p>
+
+        <h2 align="center">Распределение регистров</h2>
+        <h3>Видеосообщения и адреса перехода:</h3>
+        <ul type="none">
+            <li><b>7</b>: буква Е — основа для формирования видеосообщений
+                <div style="position:absolute;left:10px;">(<span id=button>2</span> <span id=button_f>F</span> <span id=f_operation>sin⁻¹</span> <span
+                id=display>ЕГГОГ</span> <span id=button>ВП</span> <span id=black_button>X→П</span> <span
+                id=button>7</span> <span id=display>Е</span>);</div></li>
+            <li><b>8</b>: адрес начала подпрограммы (80).</li>
+        </ul>
+        <h3>Данные пользователя (в скобках — значения исходных данных по умолчанию):</h3>
+        <ul type="none">
+            <li><b>4</b>: рыночная стоимость продуктов для одного клиента без учёта оптовой скидки, рубли (5);</li>
+            <li><b>5</b>: стоимость обслуживания одного клиента, рубли (0.5);</li>
+            <li><b>6</b>: средняя сумма, которую посетитель рассчитывает оставить у вас, рубли (7);</li>
+            <li><b>9</b>: коэффициент отчислений с оборота на собственные нужды владельца кафе (0.03);</li>
+            <li><b>a</b>: касса, рубли (250);</li>
+            <li><b>b</b>: отрицательное значение — число людей, пришедших в кафе, но не обслуженных; положительное — число пустых мест в зале (0);</li>
+            <li><b>c</b>: количество постоянных клиентов (30);</li>
+            <li><b>d</b>: нереализованные остатки пищи (0).</li>
+        </ul>
+        <h3>Служебные (используются для нужд самой программы):</h3>
+        <ul type="none">
+            <li><b>0</b>: буква текущего блока (<span id=display>Е</span> \ <span id=display>Г</span> \ <span id=display>С</span>);</li>
+            <li><b>1</b>: в блоке закупки продуктов (<span id=display>Е</span>) — средняя сумма фактически затраченная каждым вчерашним посетителем.</li>
+        </ul>
+        <h3>Неиспользуемые:</h4>
+        <ul type="none">
+            <li><b>2</b>, <b>3</b>;</li>
+            <li><b>e</b> (в МК-61\МК-52).</li>
+        </ul>
+
+        <h2 align="center">Игровой процесс</h2>
+        <p>Игра начинается командами <span id=black_button>В/0</span> <span id=black_button>С/П</span>. Каждый игровой день состоит из нескольких фаз: на индикатор выводится буквенный символ фазы, а в #Y (и в #a) находятся деньги, которыми вы располагаете на данном этапе. Следует задать денежные расходы в этой фазе и нажать <span id=black_button>С/П</span>. Суммы меньше 0, либо превышающие имеющиеся в наличии средства, блокируются: на индикатор вновь выводится символ фазы, и ПМК ожидает ввода правильного значения.</p>
+
+        <h3 align="center">1. Закупка</h3>
+        <p>На индикаторе — <span id=display>Е</span>. Прикинем, сколько клиентов мы рассчитываем накормить, во сколько обойдётся требуемое количество продуктов (<span id=black_button>П→X</span> <span id=button>4</span> — стоимость продуктов на одного клиента), укажем требуемую сумму и нажмём <span id=black_button>С/П</span>. Обратите внимание: на покупку продуктов действует оптовая скидка, растущая пропорционально сумме закупки.</p>
+
+        <h3 align="center">2. Реклама</h3>
+        <p>На индикаторе — <span id=display>Г</span>. Заглянув в #Y можно оценить размер полученной скидки. Теперь решим, сколько потратить на рекламу, привлекающую клиентуру в наше заведение. Если отдать слишком много, то явится больше народу, чем заведение в состоянии принять, что нанесёт ущерб деловой репутации; если слишком мало, кафе недополучит прибыль, а оставшиеся неизрасходованными продукты большей частью испортятся к следующему дню: необходимо искать оптимум. Указав сумму, выделяемую на рекламу, нажимаем <span id=black_button>С/П</span>.</p>
+
+        <h3 align="center">3. Сервис</h3>
+        <p>На индикаторе — <span id=display>С</span>. Выделяем на обслуживание сумму пропорционально ожидаемому количеству посетителей (<span id=black_button>П→X</span> <span id=button>5</span> — стоимость обслуживания одного клиента) и нажимаем <span id=black_button>С/П</span>.</p>
+
+        <h3 align="center">4. Подведение итогов вчерашнего дня</h3>
+        <p>На индикаторе — <span id=display>Е</span>, начался новый трудовой день, самое время перед продолжением подвести итоги дня прошедшего:
+        <ul>
+            <li>В #Y и в #a — наша текущая касса.</li>
+            <li>Положительное значение в #b обозначает количество пустовавших накануне мест = число оставшихся невостребованными порций еды (которая большей частью уже пропала; неиспортившиеся остатки находятся в #d).</li>
+            <li>Отрицательное значение в #b определяет количество посетителей, на которых не хватило еды и/или которые не дождались обслуживания (в #d в таком случае — 0). Завтра ни они, ни их родственники и друзья к вам не прийдут — приготовьтесь к оттоку клиентуры.</p></li>
+            <li>В #c — число обслуженных посетителей.</li>
+            <li>В #1 можно посмотреть, во сколько фактически каждому обслуженному посетителю обошёлся визит в ваше кафе.</li>
+        </ul>
+
+        <h3 align="center">Конец игры</h3>
+        <p>Игра продолжается до банкротства кооператора или пока клиентская база не перевалит за 7.5 миллиардов: в космос с нашей продукцией выходить пока рановато.</p>
+        <p>Чтобы начать игру заново, надо ввести исходные данные:</p>
+        <p><i>начальная сумма денег</i> <span id=black_button>X→П</span> <span id=register>a</span></p>
+        <p><i>начальный размер клиентской базы</i> <span id=black_button>X→П</span> <span id=register>c</span></p>
+        <p><span id=button_cx>CX</span> <span id=black_button>X→П</span> <span id=register>b</span> 
+            <span id=black_button>X→П</span> <span id=register>d</span><p>
+        <p>и скомандовать <span id=black_button>БП</span> <span id=button>9</span> <span id=button>0</span> <span
+                id=black_button>ПП</span> (очистка стека подпрограмм)</p>
+        <p><span id=black_button>В/0</span> <span id=black_button>С/П</span>.</p>
+
+        <h2 align="center">Пример игры</h2>
+        <p>
+            Сразу после импорта содержимое регистров соответствует данным, указанным в «Распределении регистров» (содержимое служебных и неиспользуемых регистров по умолчанию равно 0). Ниже представлен пример пары игровых дней с пояснениями.
+        </p>
+
+        <p><span id=black_button>В/О</span>&nbsp;<span id=black_button>С/П</span> — начало игры</p>
+        <p><span id=display>Е</span> — фаза закупки еды.</p>
+        <p>Рассчитываем на 40 посетителей, значит потребуется 40 × 5 = 200 рублей: <span id=button>2</span> <span id=button>0</span> <span id=button>0</span> <span id=black_button>С/П</span>.</p>
+        <p><span id=display>Г</span> — фаза заказа рекламы.</p>
+        <p><span id=button>↔</span> <span id=display>64.142135</span> рублей имеем вместо 50 — получена скидка в 14 рублей с копейками.</p>
+        <p>Потратим на рекламу 10 рублей: <span id=button>1</span> <span id=button>0</span> <span id=black_button>С/П</span>;</p>
+        <p><span id=display>С</span> — фаза обслуживания.</p>
+        <p>На обслуживание 40 посетителей необходимо 40 × 0.5 = 20 рублей: <span id=button>2</span> <span id=button>0</span> <span id=black_button>С/П</span>.</p>
+        <p><span id=display>Е</span> — следующий день, фаза закупки еды.</p>
+        <p><span id=button>↔</span> <span id=display>265.91788</span>, то есть в кассе прибавилось чуть менее 16 рублей.</p>
+        <p><span id=black_button>П→X</span> <span id=register>b</span> <span id=display>−16</span> — 16 посетителей ушли ни с чем.</p>
+        <p><span id=black_button>П→X</span> <span id=register>с</span> <span id=display>40</span> посетителей были успешно обслужены, как и планировалось.</p>
+        <p>Повторяем вчерашнюю стратегию расходов:</p>
+        <p><span id=button>2</span> <span id=button>0</span> <span id=button>0</span> <span id=black_button>С/П</span></p>
+        <p><span id=display>Г</span> <span id=button>1</span> <span id=button>0</span> <span id=black_button>С/П</span></p>
+        <p><span id=display>С</span> <span id=button>2</span> <span id=button>0</span> <span id=black_button>С/П</span>.</p>
+        <p><span id=display>Е</span> <span id=button>↔</span> <span id=display>269.71822</span> рублей в кассе.</p>
+        <p><span id=black_button>П→X</span> <span id=register>b</span> <span id=display>2</span> — 2 порции остались невостребованными, к употреблению годно ⅔ (0.66…) порции (<span id=black_button>П→X</span> <span id=register>d</span>).</p>
+        <p>Всего у нас за вчера побывало <span id=black_button>П→X</span> <span id=register>b</span> <span id=display>38</span> клиентов.
+        <h2>Примечания</h2>
+        <font size=-1>
+            <p><i><b>Источник:</b> журнал «Техника — молодёжи», № 05 / 1988.</i></p>
+            <p><i><b>Авторы:</b> В. Алексеев и редакция Клуба электронных игр (КЭИ).<i/></p>
+            <p><i><b>Оптимизировал, перевёл в формат эмулятора и составил эту инструкцию: <a href="mailto:lavrik.adam@gmail.com">А. Лаврик</a></i></p> 
+        </font>
+    </body>
+</html>
