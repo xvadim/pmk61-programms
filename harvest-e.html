@@ -1,0 +1,206 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Урожай (экстенсивная модель хозяйствования)</title>
+         <style>
+        
+body {
+    background: #BBBBBB;
+    color: black;
+}
+ul li {
+    margin: 0 10px 20px 0
+}
+/* common button */
+#button {
+    background-color:#CCCCCC;
+    color:black;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 12px 1px 12px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+/* F button */
+#button_f {
+    background-color:#F5E345;
+    color:black;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 12px 1px 12px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+/* K button */
+#button_k {
+    background-color:#71E3FF;
+    color:white;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 12px 1px 12px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+/* CX button */
+#button_cx {
+    background-color:#F00505;
+    color:white;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 8px 1px 8px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+}
+/* black button */
+#black_button {
+    background-color:black;
+    color:white;
+    text-transform:uppercase;
+    font-size:1.1em;
+    font-weight:bold;
+    font-family:monospace;
+    padding:1px 6px 1px 6px;
+    
+    border:thin solid white;
+    border-radius:3px;
+    width:12px;
+}
+#display {
+    background-color:#103810;
+    color:#77FF77;
+    
+    font-family: monospace;
+    font-size:1.3em;
+    font-weight:bold;
+    padding: 1px 2px 1px 2px;
+}
+#register {
+    color:white;
+    font-weight:bold;
+}
+#f_operation {
+    color:yellow;
+}
+#k_operation {
+    color:#167ed7;
+}
+    </style>
+
+    </head>
+    <body>
+        <h1 align="center">Урожай</h1>
+
+        <p><i>Вы стали директором совхоза, получив в распоряжение пашню, прилегающие лесные угодья и немалую на своё время денежную сумму. Вам предстоит осваивать целину, выращивать несколько разных сельскохозяйственных культур, организовывать сбор грибов, ягод и других даров природы, обеспечивать охрану закромов Родины, конечно же, не забывая делать ежегодные отчисления в государственный бюджет. Сможете ли вы привести ввереное вам хозяйство к успеху и процветанию?</i></p>
+
+        <h2 align="center">Распределение регистров</h2>
+        <h3>Видеосообщения и адреса перехода:</h3>
+        <ul type="none">
+            <li><b>7</b>: буква Е — основа для формирования видеосообщений 
+                <div style="position:absolute;left:10px;">(<span id=button>2</span> <span id=button_f>F</span> <span id=f_operation>sin⁻¹</span>
+                    <span id=display>ЕГГОГ</span> <span id=button>ВП</span> <span id=black_button>X→П</span> <span
+                        id=button>7</span> <span id=display>Е</span>);</div>
+                </li>
+            <li><b>8</b>: адрес перехода (82);</li>
+            <li><b>9</b>: адрес начала подпрограммы (93).</li>
+        </ul>
+        <h3>Данные пользователя (в скобках — значения исходных данных по умолчанию):</h3>
+        <ul type="none">
+            <li><b>3</b>: стоимость освоения гектара целины, рубли (300);</li>
+            <li><b>4</b>: стоимость обработки гектара пахотной земли, рубли (30);</li>
+            <li><b>5</b>: коэффициент средней урожайности (1.1);</li>
+            <li><b>6</b>: коэффициент денежной ссуды (1.2);</li>
+            <li><b>a</b>: денежные средства, рубли (35 000);</li>
+            <li><b>b</b>: отчисления в государственный бюджет, рубли в год (3 500);</li>
+            <li><b>d</b>: площадь пахотных земель, гектары (1 000).</li>
+        </ul>
+        <h3>Служебные (используются для нужд самой программы):</h3>
+        <ul type="none">
+            <li><b>0</b>: символ текущего блока (<span id=display>Е</span> \ <span id=display>Г</span> \ <span id=display>С</span> \ <span id=display>L</span> \ <span id=display>−</span>);</li>
+            <li><b>1</b>, <b>2</b>;</li>
+            <li><b>c</b>: расчёт текущей прибыли.</li>
+        </ul>
+        <h3>Неиспользуемые:</h3>
+        <ul type="none">
+            <li>(в версии для МК-61\МК-52):</li>
+            <li><b>8</b>, <b>9</b>, <b>e</b>.</li>
+        </ul>
+
+        <h2 align="center">Процесс игры</h2>
+        <p>Переключатель Р—ГРД—Г устанавливается в Р. Игра начинается командами <span id=black_button>В/0</span> <span id=black_button>С/П</span>. Игровой цикл состоит из нескольких этапов, отмечаемых соответствующими символами на индикаторе:</p>
+
+        <h3 align="center">1. Освоение новых земель</h3>
+        <p>На индикаторе — <span id=display>Е</span>, в #Y — имеющаяся распоряжении сумма, часть которой можно выделить на освоение новых земель (<span id=black_button>П→X</span> <span id=button>3</span> — затраты на каждый новый гектар), либо обойтись имеющимися площадьми, указав 0. После ввода значения следует нажать <span id=black_button>С/П</span>. Отрицательная сумма («списание» земли) либо превышающая имеющуюся блокируется: <span id=display>ЕГГОГ</span>; при нажатии <span id=button>↔</span> появится <span id=display>Е</span> — символ фазы, в которой допущена ошибка, а после повторного нажатия <span id=button>↔</span> — отрицательное число: введённая сумма (игру после этого можно продолжить, нажав <span id=black_button>БП</span> <span id=button>9</span> <span id=button>9</span> <span id=black_button>ПП</span> (очистка стека возврата) <span id=black_button>В/0</span> <span id=black_button>С/П</span>) либо перерасход, в этом случае игру придётся начинать заново. (Аналогичные проверки делаются и в фазах <span id=display>Г</span> и <span id=display>С</span>).</p>
+
+        <h3 align="center">2. Посевные работы</h3>
+        <p>Имеющиеся земли можно засеивать тремя сельско‐хозяйствеными культурами, имеющими свой процент риска урожайности: 1. кукурузой (110 ± 33 %), 2. пшеницей (110 ± 17 %), 3. рожью (110 ± 11 %). На индикатор последовательно выводятся номера культур (<span id=display>3</span>, <span id=display>2</span>, <span id=display>1</span>), в #Y — площадь ещё не задействованных полей. Необходимо, оценив свои финансовые возможности (<span id=black_button>П→X</span> <span id=button>4</span> — стоимость обработки гектара, независимо от возделываемой культуры) и риски, указать, какую площадь мы отведём под засев этой культурой, и нажать <span id=black_button>С/П</span>. Распределять земли можно в произвольной пропорции, какую-то часть можно вообще не засеивать (как правило, это вынужденная мера при нехватке денег). Если указанная площадь отрицательна, либо превышает имеющуюся, либо обработка её потребует бо́льших вложений, чем позволяет имеющийся бюджет, на индикаторе вновь появляется тот же номер, и ПМК ждёт правильного ввода.</p>
+
+        <h3 align="center">3. Сбор даров природы</h3>
+        <p>На индикаторе — <span id=display>Г</span>, в #Y — деньги, оставшиеся после посевной. Теперь следует организовать сбор и реализацию грибов, ягод и прочих даров природы. При сравнительно малых затратах этот род деятельности даёт 100 % прибыли, но с увеличением вложений она быстро падает: если собраны все грибы в соседних лесах (их площадь будем считать пропорциональной площади полей), то сколько новых сборщиков не посылай, будут одни убытки. Так что здесь существует некоторый оптимум затрат. Задав отведённую на собирательство сумму нажимаем <span id=black_button>С/П</span>.</p>
+
+        <h3 align="center">4. Охрана урожая</h3>
+        <p>На индикаторе — <span id=display>С</span>, в #Y — остаток денег. Надо позаботиться о складе, сторожах и собаках, пока собранный урожай не растащили расхитители социалистической собственности. Если вложить слишком мало, от урожая останутся рожки да ножки, если чересчур много, то может не хватить на предстоящие в следующей фазе отчисления государству. Указываем сумму, которую мы готовы выделить на охрану, и нажимаем <span id=black_button>С/П</span>.</p>
+
+        <h3 align="center">5. Отчисления в государственный бюджет</h3>
+        <p>На индикаторе — <span id=display>L</span>, пора платить государству установленный взнос (находится в #Y и #b). При нехватке средств на этом этапе, в отличие от предыдущих, можно получить государственную ссуду на недостающую сумму (предоставляется автоматически). Однако возвращать придётся в <span id=black_button>П→X</span> <span id=button>6</span> раз больше. Вызываем сумму выплат в госбюджет в #X (<span id=button>↔</span>, либо <span id=black_button>П→X</span> <span id=register>b</span>) и нажимаем <span id=black_button>С/П</span>. ПМК подводит итоги, и если, всё в порядке, переходит к первой фазе следующего цикла <span id=black_button>Е</span>. Если же вырученных средств не хватает даже на возврат ссуды, на индикаторе появляется <span id=black_button>ЕГГОГ</span>, а после нажатия <span id=button>↔</span> — знак <span id=display>−</span>, чей смысл ясен без комментариев; повторно нажав <span id=button>↔</span> можно узнать сумму недоплаты.</p>
+        
+        <p>В рассмотренном варианте использована экстенсивная модель хозяйствования, когда увеличение прибыли достигается исключительно расширением посевной площади. Имеется также вариант harvest-i, реализующий интенсивную модель, основанную на увеличении урожайности имеющейся посевной площади.</p>
+
+        <h2 align="center">Пример игры</h2>
+        <p>
+            Сразу после импорта содержимое регистров соответствует данным, указанным в «Распределении регистров» (содержимое служебных и неиспользуемых регистров по умолчанию равно 0). Ниже представлен пример пары трёх циклов с пояснениями.
+        </p>
+
+        <p><span id=black_button>В/О</span>&nbsp;<span id=black_button>С/П</span> — начало игры</p>
+        <p><span id=display>Е</span> — освоение новых земель.</p>
+        <p><span id=button>↔</span> <span id=display>35000</span> — наш бюджет. Оставим посевную площадь прежней — <span id=button_cx>CX</span> <span id=black_button>С/П</span>.</p>
+        <p>Посев.</p>
+        <p>Выделим под каждую культуру по ⅓ имеющихся площадей:</p>
+        <ul type="none">
+            <li><span id=display>3</span> (рожь) <span id=button>÷</span> <span id=display>333.33333</span> <span id=black_button>С/П</span>;</p></li>
+            <li><span id=display>2</span> (пшеница) <span id=button>÷</span> <span id=display>333.33335</span> <span id=black_button>С/П</span>;</p></li>
+            <li><span id=display>1</span> (кукуруза) <span id=button>÷</span> <span id=display>333.33335</span> <span id=black_button>С/П</span>.</p></li>
+        </ul>
+        <p><span id=display>Г</span> — сбор грибов и ягод.</p>
+        <p>Выделим сборщикам 1000 рублей (в данной ситуации это число близко к оптимуму): <span id=button>1</span> <span id=button>ВП</span> <span id=button>3</span> <span id=black_button>С/П</span>.</p>
+        <p><span id=display>С</span> — сторожа и собаки.</p>
+        <p>Потратим на охрану урожая 150 рублей (сейчас это число также близко к оптимуму): <span id=button>1</span> <span id=button>5</span> <span id=button>0</span> <span id=black_button>С/П</span>.</p>
+        <p><span id=display>L</span> — выплаты в госбюджет.</p>
+        <p><span id=button>↔</span> <span id=display>3500</span> <span id=black_button>С/П</span>.</p>
+        <p><span id=display>Е</span> — начался следующий цикл.</p>
+        <p><span id=button>↔</span> <span id=display>32188.165</span> — очевидно, неурожай, потеряны почти три тысячи. Повторим прошлогоднюю стратегию:</p>
+        <ul type="none">
+            <li><span id=button_cx>CX</span> <span id=black_button>С/П</span> <span id=display>3</span> <span
+                    id=button>÷</span> <span id=display>333.3333</span> <span id=black_button>С/П</span><br>
+            <span id=display>2</span> <span id=button>÷</span> <span id=display>333.33335</span> <span
+                id=black_button>С/П</span><br>
+            <span id=display>1</span> <span id=button>÷</span> <span id=display>333.33335</span> <span id=black_button>С/П</span></li>
+            <li><span id=display>Г</span> <span id=button>1</span> <span id=button>ВП</span> <span id=button>3</span> <span id=black_button>С/П</span></li>
+            <li><span id=display>С</span> <span id=button>1</span> <span id=button>5</span> <span id=button>0</span> <span id=black_button>С/П</span></li>
+            <li><span id=display>L</span> — в кассе (#a) чуть больше тысячи, без ссуды не обойтись — <span id=button>↔</span> <span id=display>3500</span> <span id=black_button>С/П</span></li>
+        </ul>
+        <p><span id=display>Е</span> — начался следующий цикл.</p>
+        <p><span id=button>↔</span> <span id=display>34099.159</span> — дела пошли на поправку. Повторим вышеописанную процедуру ещё раз, и в кассе окажется <span id=display>35187.236</span> рублей — больше, чем в начале.</p>
+        <h2>Примечания</h2>
+        <font size=-1>
+            <p><i><b>Источник:</b> журнал «Техника — молодёжи», № 09 / 1986.</i></p>
+            <p><i><b>Авторы:</b> В. Алексеев и редакция Клуба электронных игр (КЭИ).<i/></p>
+            <p><i><b>Оптимизировал, перевёл в формат эмулятора и составил эту инструкцию: <a href="mailto:lavrik.adam@gmail.com">А. Лаврик</a></i></p> 
+        </font>
+    </body>
+</html>
