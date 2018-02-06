@@ -24,6 +24,7 @@ ul li {
     border-radius:3px;
     
     width:12px;
+    white-space: nowrap;
 }
 /* F button */
 #button_f {
@@ -38,6 +39,7 @@ ul li {
     border-radius:3px;
     
     width:12px;
+    white-space: nowrap;
 }
 /* K button */
 #button_k {
@@ -52,6 +54,7 @@ ul li {
     border-radius:3px;
     
     width:12px;
+    white-space: nowrap;
 }
 /* CX button */
 #button_cx {
@@ -66,6 +69,7 @@ ul li {
     border-radius:3px;
     
     width:12px;
+    white-space: nowrap;
 }
 /* black button */
 #black_button {
@@ -80,6 +84,7 @@ ul li {
     border:thin solid white;
     border-radius:3px;
     width:12px;
+    white-space: nowrap;
 }
 #display {
     background-color:#103810;
@@ -89,6 +94,7 @@ ul li {
     font-size:1.3em;
     font-weight:bold;
     padding: 1px 2px 1px 2px;
+    white-space: nowrap;
 }
 #register {
     color:white;
@@ -111,8 +117,12 @@ ul li {
         <h2 align="center">Распределение регистров</h2>
         <h3>Видеосообщения и адреса перехода:</h3>
         <ul type="none">
-            <li><b>7</b>: буква Е — основа для формирования видеосообщений (<span id=button>2</span> <span id=button_f>F</span> <span id=f_operation>sin⁻¹</span> <span id=display>ЕГГОГ</span> <span id=button>ВП</span> <span id=black_button>X→П</span> <span id=button>7</span> <span id=display>Е</span>);</li>
-            <li>(в версии для Б3-34\МК-54\МК-56):</li>
+            <li><b>7</b>: буква Е — основа для формирования видеосообщений 
+                <div style="position:absolute;left:10px;">
+            (<span id=button>2</span> <span id=button_f>F</span> <span id=f_operation>sin⁻¹</span> <span
+                id=display>ЕГГОГ</span> <span id=button>ВП</span> <span id=black_button>X→П</span> <span
+                id=button>7</span> <span id=display>Е</span>);</div>
+        </li>
             <li><b>8</b>: адрес перехода (82);</li>
             <li><b>9</b>: адрес начала подпрограммы (93).</li>
         </ul>

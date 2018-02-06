@@ -9,7 +9,7 @@ body {
     color: black;
 }
 ul li {
-    margin: 0 10px 20px 0
+    margin: 0 20px 20px 0
 }
 /* common button */
 #button {
@@ -24,6 +24,7 @@ ul li {
     border-radius:3px;
     
     width:12px;
+    white-space: nowrap;
 }
 /* F button */
 #button_f {
@@ -38,6 +39,7 @@ ul li {
     border-radius:3px;
     
     width:12px;
+    white-space: nowrap;
 }
 /* K button */
 #button_k {
@@ -52,6 +54,7 @@ ul li {
     border-radius:3px;
     
     width:12px;
+    white-space: nowrap;
 }
 /* CX button */
 #button_cx {
@@ -66,6 +69,7 @@ ul li {
     border-radius:3px;
     
     width:12px;
+    white-space: nowrap;
 }
 /* black button */
 #black_button {
@@ -80,6 +84,7 @@ ul li {
     border:thin solid white;
     border-radius:3px;
     width:12px;
+    white-space: nowrap;
 }
 #display {
     background-color:#103810;
@@ -89,6 +94,7 @@ ul li {
     font-size:1.3em;
     font-weight:bold;
     padding: 1px 2px 1px 2px;
+    white-space: nowrap;
 }
 #register {
     color:white;
@@ -112,10 +118,9 @@ ul li {
         <h3>Видеосообщения и адреса перехода:</h3>
         <ul type="none">
             <li><b>7</b>: буква Е — основа для формирования видеосообщений 
-                <div style="position:absolute;left:10px;">(<span id=button>2</span> <span id=button_f>F</span> <span id=f_operation>sin⁻¹</span>
-                    <span id=display>ЕГГОГ</span> <span id=button>ВП</span> <span id=black_button>X→П</span> <span
-                        id=button>7</span> <span id=display>Е</span>);</div>
-                </li>
+                <div style="position:absolute;left:10px;">(<span id=button>2</span> <span id=button_f>F</span> <span
+            id=f_operation>sin⁻¹</span> <span id=display>ЕГГОГ</span> <span id=button>ВП</span> <span id=black_button>X→П</span> <span id=button>7</span> <span id=display>Е</span>)</div;
+            </li>
             <li><b>8</b>: адрес перехода (82);</li>
             <li><b>9</b>: адрес начала подпрограммы (93).</li>
         </ul>
@@ -185,11 +190,7 @@ ul li {
         <p><span id=display>Е</span> — начался следующий цикл.</p>
         <p><span id=button>↔</span> <span id=display>32188.165</span> — очевидно, неурожай, потеряны почти три тысячи. Повторим прошлогоднюю стратегию:</p>
         <ul type="none">
-            <li><span id=button_cx>CX</span> <span id=black_button>С/П</span> <span id=display>3</span> <span
-                    id=button>÷</span> <span id=display>333.3333</span> <span id=black_button>С/П</span><br>
-            <span id=display>2</span> <span id=button>÷</span> <span id=display>333.33335</span> <span
-                id=black_button>С/П</span><br>
-            <span id=display>1</span> <span id=button>÷</span> <span id=display>333.33335</span> <span id=black_button>С/П</span></li>
+            <li><span id=button_cx>CX</span> <span id=black_button>С/П</span> <span id=display>3</span> <span id=button>÷</span> <span id=display>333.33333</span> <span id=black_button>С/П</span> <span id=display>2</span> <span id=button>÷</span> <span id=display>333.33335</span> <span id=black_button>С/П</span> <span id=display>1</span> <span id=button>÷</span> <span id=display>333.33335</span> <span id=black_button>С/П</span></li>
             <li><span id=display>Г</span> <span id=button>1</span> <span id=button>ВП</span> <span id=button>3</span> <span id=black_button>С/П</span></li>
             <li><span id=display>С</span> <span id=button>1</span> <span id=button>5</span> <span id=button>0</span> <span id=black_button>С/П</span></li>
             <li><span id=display>L</span> — в кассе (#a) чуть больше тысячи, без ссуды не обойтись — <span id=button>↔</span> <span id=display>3500</span> <span id=black_button>С/П</span></li>
