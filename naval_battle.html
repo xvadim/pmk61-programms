@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Морской бой</title>
+         <style>
+        
+body {
+    background: #BBBBBB;
+    color: black;
+}
+ul li {
+    margin: 0 20px 20px 0
+}
+/* common button */
+#button {
+    background-color:#CCCCCC;
+    color:black;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 12px 1px 12px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+    white-space: nowrap;
+}
+/* F button */
+#button_f {
+    background-color:#F5E345;
+    color:black;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 12px 1px 12px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+    white-space: nowrap;
+}
+/* K button */
+#button_k {
+    background-color:#71E3FF;
+    color:white;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 12px 1px 12px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+    white-space: nowrap;
+}
+/* CX button */
+#button_cx {
+    background-color:#F00505;
+    color:white;
+    text-transform:uppercase;
+    font-size:1.2em;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 1px 8px 1px 8px;
+    border:thin solid black;
+    border-radius:3px;
+    
+    width:12px;
+    white-space: nowrap;
+}
+/* black button */
+#black_button {
+    background-color:black;
+    color:white;
+    text-transform:uppercase;
+    font-size:1.1em;
+    font-weight:bold;
+    font-family:monospace;
+    padding:2px 6px 1px 6px;
+    
+    border:thin solid white;
+    border-radius:3px;
+    width:12px;
+    white-space: nowrap;
+}
+#display {
+    background-color:#103810;
+    color:#77FF77;
+    
+    font-family: monospace;
+    font-size:1.3em;
+    font-weight:bold;
+    padding: 1px 2px 1px 2px;
+    white-space: nowrap;
+}
+#register {
+    color:white;
+    font-weight:bold;
+}
+#f_operation {
+    color:yellow;
+}
+#k_operation {
+    color:#167ed7;
+}
+    </style>
+
+    </head>
+    <body>
+        <h1 align="center">Морской бой</h1>
+
+        <p><i>Вариант игры «Морской бой», адаптированный под возможности ПМК.</i></p>
+
+        <h2 align="center">Правила игры</h2>
+        <ol>
+            <li>Игра ведётся на поле размером 10×10 клеток, строки и столбцы поля нумеруются цифрами 0…9.</li>
+            <li>В начале игры каждый игрок произвольно расставляет на своём игровом поле 10 одноклеточных кораблей; допускается размещение кораблей в соседних клетках.</li>
+            <li>Игроки ходят попеременно, объявляя сопернику координаты залпа по его полю, а соперник сообщает удалось ли попасть по его кораблю или нет. Поразивший цель игрок получает право на внеочередной ход. Повторный залп по уже подбитому кораблю считается промахом.</li>
+            <li>Побеждает игрок, первым потопивший все корабли противника.</li>
+        </ol>
+
+        <h2 align="center">Распределение регистров</h2>
+        <h3>Служебные (используются для нужд самой программы):</h3>
+        <ul type="none">
+            <li><b>0…9, a</b>: игровое поле и его индексатор;</li>
+            <li><b>b</b>: число непотопленных кораблей человека;</li>
+            <li><b>c</b>: число непотопленных кораблей калькулятора;</li>
+            <li><b>d</b>: данные датчика псевдослучайных чисел.</li>
+        </ul>
+        <h3>Неиспользуемые:</h4>
+        <ul type="none">
+            <li><b>e</b> (в МК-61\МК-52).</li>
+        </ul>
+
+        <h2 align="center">Игровой процесс</h2>
+
+        <h3>Начало</h3>
+        <p>Для начала партии необходимо ввести в #X любое целое положительное число (оно послужит основой для генерации псевдослучайных чисел) и скомандовать <span id=black_button>В/0</span> <span id=black_button>С/П</span>. Пока ПМК расставляет в памяти свои корабли, мы расставляем на бумаге свои. Появление на индикаторе <span id=display>−10</span> свидетельствует о готовности калькулятора играть. Право первого хода предоставляется человеку (но при желании его можно уступить ПМК, нажав <span id=black_button>БП</span> <span id=button>4</span> <span id=button>6</span> (для МК-61\МК-52), либо <span id=black_button>БП</span> <span id=button>4</span> <span id=button>0</span> (для Б3-34\МК-54\МК-56) и <span id=black_button>С/П</span>).</p>
+
+        <h3>Ход человека</h3>
+        <p>Указываем координаты клетки залпа — целое число от 00 до 99 (если первая координата — 0, её можно опустить) и нажимаем С/П. ПМК сравнивает введённое значение с координатами своих кораблей, в случае попадания, высвечивает отрицательное число — количество своих непотопленных кораблей, и ждёт нашего следующего хода человека. Если же совпадений не было, на индикаторе появляется <span id=display>0</span>, и надо нажать <span id=black_button>С/П</span> для передачи хода калькулятору. В любом случае координаты последнего залпа человека находятся в #Y.</p>
+        <p>Следует заметить, что повторный залп по уже подбитому кораблю считается промахом.</p>
+
+        <h3>Ход калькулятора</h3>
+        <p>ПМК высвечивает координаты своего залпа (если число однозначное (0…9), мысленно дописываем к нему слева 0). Сверяем значение с нашим игровым полем, если ПМК попал, сообщаем ему об этом: вводим любое отрицательное число (обычно достаточно нажать <span id=button>/−/</span>; но если в #X находится 0 к <span id=button>/−/</span> надо добавить <span id=button>ВП</span>) и <span id=black_button>С/П</span>; ПМК продолжит вести огонь пока не промахнётся. В случае его промаха просто переходим к своему ходу (указываем координаты своего очередного залпа и <span id=black_button>С/П</span>).</p>
+
+        <p>В любой момент игры можно проверить, сколько кораблей остаётся на плаву у нас (<span id=black_button>П→X</span> <span id=register>b</span>) и у калькулятора (<span id=black_button>П→X</span><span id=register>c</span>).</p>
+
+        <h3>Конец игры</h3>
+        <p>Игра заканчивается, когда все корабли одного из игроков оказываются потопленными. ПМК отмечает это сообщением <span id=display>ЕГГОГ</span> — либо после нашего хода (значит мы выиграли, уничтожив последний из кораблей калькулятора), либо после нашего 10-го по счёту сообщения калькулятору о его попадании по вашему кораблю (в таком случае победа остаётся за калькулятором). В любом случае координаты финального залпа морской баталии находятся в #Y. Можно начинать следующую партию!</p>
+
+        <h2 align="center">Пример игры</h2>
+        
+        <p><span id=button>2</span> <span id=button>5</span> <span id=black_button>В/О</span> <span id=black_button>С/П</span> <span id=display>−10</span> — начало игры, число 25 выбрано для инициализации датчика псевдослучайных чисел.</p>
+        <p><span id=button>6</span> <span id=button>2</span> <span id=black_button>С/П</span> <span id=display>−9</span> — мы дали залп по полю 62 и поразили цель; у ПМК осталось 9 кораблей.</p>
+        <p><span id=button>4</span> <span id=button>5</span> <span id=black_button>С/П</span> <span id=display>0</span> — мы дали залп по полю 45 и промахнулись, передаём ход ПМК: <span id=black_button>С/П</span>.</p>
+        <p><span id=display>90</span> — ПМК дал залп по полю 90, допустим, что он попал по нашему кораблю: <span id=button>/−/</span> <span id=display>−90</span> <span id=black_button>С/П</span>.</p>
+        <p><span id=display>67</span> — ПМК дал залп по полю 67, пускай он промахнулся. Вводим координаты своего следующего залпа и нажимаем <span id=black_button>С/П</span> и т. д.</p>
+        <h2>Примечания</h2>
+        <font size=-1>
+            <p><i><b>Источник:</b> журнал «Техника — молодёжи», № 10 / 1986.</i></p>
+            <p><i><b>Авторы:</b> Г. Горовой.<i/></p>
+            <p><i><b>Переписал, взяв за основу алгоритм оригинала, оптимизировал, перевёл в формат эмулятора и составил эту инструкцию: <a href="mailto:lavrik.adam@gmail.com">А. Лаврик</a></i></p> 
+        </font>
+    </body>
+</html>
